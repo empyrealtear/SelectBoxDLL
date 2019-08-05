@@ -1,5 +1,6 @@
 Clear-Host
-[void][reflection.assembly]::LoadFile("D:\Files\Program\C#\SelectBox\SelectBox.dll")
+$ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
+[void][reflection.assembly]::LoadFile($ScriptPath + "\SelectBox.dll")
 
 $BoxSetting = New-Object SelectBoxDll.BoxSetting
 $BoxWrite = New-Object SelectBoxDll.BoxWrite
@@ -36,8 +37,6 @@ $BoxWrite.NewColorSet($defcolors, $defcolors, $Border, $defcolors, $HighLight, $
 
 
 $BoxWrite.WriteBorder()
-
-
 # ((Get-Date) - $start).TotalSeconds
 $BoxWrite.ReadContent()
 # $BoxWrite.ReadContentSet.Index
