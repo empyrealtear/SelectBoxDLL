@@ -1,3 +1,8 @@
+## **[SelectBox.dll] Help**
+> 此文为 `SelectBox.dll` 在 `powershell` 中的使用方案, 个人没有完全理解到 `powershell二进制模块` 的制作方法。因此, 采用 `C#` 方法传参的方式, 进行快速将参数传入 dll 函数中。
+
+## **Content**
+--------------
 
 <!-- vim-markdown-toc GFM -->
 - [**类方法 Class Help**](#class-help)
@@ -18,8 +23,8 @@
   - [8. 选项读取 ReadContentObj](#8-readcontentobj)
 <!-- vim-markdown-toc -->
 
-## **[SelectBox.dll] Help**
-> 此文为 `SelectBox.dll` 在 `powershell` 中的使用方案, 个人没有完全理解到 `powershell二进制模块` 的制作方法。因此, 采用 `C#` 方法传参的方式, 进行快速将参数传入 dll 函数中。
+--------------
+
 ### **FIXME**
 ```powershell
 $BoxSetting.ContentSet = [SelectBoxDll.ContentSetObj]::new($Strings.Count, [int[]](1), $true, [SelectBoxDll.AlignmentEnum]::Left)
@@ -33,6 +38,8 @@ $BoxSetting.Border = [SelectBoxDll.BorderObj]::new("", "", "", "", "", "", "", "
 ```
 
 ### **Class Help**
+------------------
+
 #### 1. BoxSetting
 * **1. 外部传参**
 ```powershell
@@ -74,7 +81,7 @@ $BoxSetting.MregeAll()
 | Container | Type | Parameter | Resume
 |-----------|:----:|:---------:|-------
 | `MergeAll()`    | public  | No | **重铸所有框架画布设置**
-|
+|                 |         |    |
 | MergeContent()  | private | No | 重铸内容设置
 | MergePadding()  | private | No | 重铸框内空白
 | MergeBorder()   | private | No | 重铸框线设置
@@ -109,7 +116,7 @@ $BoxWrite.NewColorSet($Margin, $Padding, $Border, $Content, $HighLight, $Pointer
 | `Set`            | BoxSetting     | Yes | 整体框架设置
 | `ColorsSet`      | GraphColorsObj | Yes | 整体颜色设置
 | `ReadContentSet` | ReadContentObj | Yes | 读取选项设置
-|
+|                  |                |     |
 | MarginGraph      | String[]       | No  | 框外空白画布
 | PaddingGraph     | String[]       | No  | 框内空白画布
 | BorderGraph      | String[]       | No  | 整体框线画布
@@ -127,13 +134,15 @@ $BoxWrite.ReadContentSet.Value # 选定内容值
 |-----------|:----:|:---------:|-------
 | `WriteBorder()` | public  | No  | **绘制选项框整体**
 | `ReadContent()` | public  | No  | **读取选项内容**
-|
+|                 |         |     |
 | MergeGraph()    | private | Yes | 重铸画布
 | WriteGraph()    | private | Yes | 自上而下绘制画布
 | WriteStrXY()    | private | Yes | 按索引在内容锚点输出字符串
 
 #### 3. Function
 > 封装的静态方法, 和一些重复较多的简单代码
+
+
 * 1.分辨中占 2 字节的`字符串实际长度`
 ```cs
 // TODO: 字符串的真实长度
@@ -161,6 +170,8 @@ public static Dictionary<String, Int32[]> GetBorderIndex(Int32 Count, Int32 Colu
 ```
 
 ### **Eumn Help**
+-----------------
+
 #### 1. AlignmentEnum
 * 画布对齐方式, `powershell` 调用方式如下
 ```powershell
@@ -194,8 +205,9 @@ public static Dictionary<String, Int32[]> GetBorderIndex(Int32 Count, Int32 Colu
 | DoubleVerticalLineOnly   | 6 | 仅竖双线
 | DoubleHorizontalLineOnly | 7 | 仅横双线
 
-
 ### **Struct Help**
+--------------------
+
 #### 1. Position
 * 坐标结构体
 ```powershell
@@ -262,7 +274,7 @@ $Margin.Left = 10 # 设置 Left = 10
 | `Buttom`  | Int32                   | Yes | 底部空白
 | `Left`    | Int32                   | Yes | 左侧空白
 | `Right`   | Int32                   | Yes | 右侧空白
-|
+|           |                         |     |
 | Width     | Int32                   | No  | 左右宽度
 | Height    | Int32                   | No  | 上下高度
 | Position  | [Position](#1-position) | No  | 左上角坐标
@@ -304,7 +316,7 @@ $Border.Top = [char]0x2501 # 设置 Top = "━"
 | `RightTop`    | String                  | Yes | 右上角边框
 | `LeftButtom`  | String                  | Yes | 左下角边框
 | `RightButtom` | String                  | Yes | 右下角边框
-|
+|               |                         |     |
 | Width         | Int32                   | No  | 左右宽度
 | Height        | Int32                   | No  | 上下高度
 | TopMaxLen     | Int32                   | No  | 顶部最大行数
@@ -333,7 +345,7 @@ $Content.Pointer = "> "                     # 设置 Pointer = "> "
 | ----------|------|:------------:|--------
 | `Strings` | String[]                  | Yes | 字符串数组
 | `Pointer` | String                    | Yes | 左侧指示字符串
-|
+|           |                           |     |
 | Flush     | String[]                  | No  | 空白字符串数组
 | Positions | [Position](#1-position)[] | No  | 各字符串坐标数组
 
@@ -358,7 +370,7 @@ $ContentSet.Column = 3 # 设置 Column = 3
 | `ColIndent` | Int32[]                           | Yes | 列间距
 | `ByColumn`  | Boolean                           | Yes | 按列排序
 | `Alignment` | [AlignmentEnum](#1-alignmentenum) | Yes | 对齐方式
-|
+|             |                                   |     |
 | Row         | Int32                             | No  | 行数
 | Count       | Int32                             | No  | 内容总个数
 | Width       | Int32                             | No  | 总宽度
@@ -415,7 +427,7 @@ $ReadContentSet.UpArrow = [ConsoleKey]::DownArrow.ToString() # 同上
 | `LeftArrow`  | String  | Yes | 向上移动
 | `RightArrow` | String  | Yes | 向右移动
 | `Boolean`    | Recycle | Yes | 循环开关
-|
+|              |         |     |
 | Index        | Int32   | No  | 选中索引号
 | Value        | String  | No  | 选中内容值
 
