@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+// using System.Text;
 using System.ComponentModel;
 
 namespace SelectBoxDll
@@ -76,15 +76,17 @@ namespace SelectBoxDll
         }
         public BorderObj(PreBorderEnum custom)
         {
-            Dictionary<PreBorderEnum, String[]> PreBorderDict = new Dictionary<PreBorderEnum, String[]>();
-            PreBorderDict.Add(PreBorderEnum.AllThinLine, new String[] { "\u2502", "\u2500", "\u250C", "\u2510", "\u2514", "\u2518" });
-            PreBorderDict.Add(PreBorderEnum.AllBoldLine, new String[] { "\u2503", "\u2501", "\u250F", "\u2513", "\u2517", "\u251B" });
-            PreBorderDict.Add(PreBorderEnum.AllDoubleLine, new String[] { "\u2551", "\u2550", "\u2554", "\u2557", "\u255A", "\u255D" });
-            PreBorderDict.Add(PreBorderEnum.ThinBorderRadius, new String[] { "\u2502", "\u2500", "\u256D", "\u256E", "\u2570", "\u256F" });
-            PreBorderDict.Add(PreBorderEnum.BoldVerticalLineOnly, new String[] { "\u2503", "\u2500", "\u250E", "\u2512", "\u2516", "\u251A" });
-            PreBorderDict.Add(PreBorderEnum.BoldHorizontalLineOnly, new String[] { "\u2502", "\u2501", "\u250D", "\u2511", "\u2515", "\u2519" });
-            PreBorderDict.Add(PreBorderEnum.DoubleVerticalLineOnly, new String[] { "\u2551", "\u2501", "\u2553", "\u2556", "\u2559", "\u255C" });
-            PreBorderDict.Add(PreBorderEnum.DoubleHorizontalLineOnly, new String[] { "\u2502", "\u2550", "\u2552", "\u2555", "\u2558", "\u255B" });
+            Dictionary<PreBorderEnum, String[]> PreBorderDict = new Dictionary<PreBorderEnum, String[]>()
+            {
+                [PreBorderEnum.AllThinLine] = new String[] { "\u2502", "\u2500", "\u250C", "\u2510", "\u2514", "\u2518" },
+                [PreBorderEnum.AllBoldLine] = new String[] { "\u2503", "\u2501", "\u250F", "\u2513", "\u2517", "\u251B" },
+                [PreBorderEnum.AllDoubleLine] = new String[] { "\u2551", "\u2550", "\u2554", "\u2557", "\u255A", "\u255D" },
+                [PreBorderEnum.ThinBorderRadius] = new String[] { "\u2502", "\u2500", "\u256D", "\u256E", "\u2570", "\u256F" },
+                [PreBorderEnum.BoldVerticalLineOnly] = new String[] { "\u2503", "\u2500", "\u250E", "\u2512", "\u2516", "\u251A" },
+                [PreBorderEnum.BoldHorizontalLineOnly] = new String[] { "\u2502", "\u2501", "\u250D", "\u2511", "\u2515", "\u2519" },
+                [PreBorderEnum.DoubleVerticalLineOnly] = new String[] { "\u2551", "\u2501", "\u2553", "\u2556", "\u2559", "\u255C" },
+                [PreBorderEnum.DoubleHorizontalLineOnly] = new String[] { "\u2502", "\u2550", "\u2552", "\u2555", "\u2558", "\u255B" },
+            };
 
             String[] PreBorder = PreBorderDict[custom];
             Left = Right = PreBorder[0]; Top = Buttom = PreBorder[1];
@@ -625,6 +627,10 @@ namespace SelectBoxDll
         }
     }
 
+    public class Help
+    {
+        public static void Main() { Console.WriteLine("See https://github.com/empyrealtear/SelectBoxDLL"); }
+    }
     // public class Excute
     // {
     //     public static void Main()
